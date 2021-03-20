@@ -48,11 +48,47 @@ function USApop(array){
 
 // console.log(strings);
 
-function CuboidMaker(length, width, height) {
+function CuboidMaker (length, width, height) {
     this.length = length;
     this.width = width;
     this.height = height;
+    this.volume = function() {
+      return this.length * this.width * this.height;
+    };
   }
 
-const cube1 = new CuboidMaker(4,4,2);
-console.log(cube1);
+// const cube1 = new CuboidMaker(4,4,2);
+// console.log(cube1.length);
+
+class CuboidMakerTwo{
+    constructor(obj) {
+      this.length = obj.length;
+      this.height = obj.height;
+      this.width = obj.width;
+      
+    }
+  
+    surfaceArea() {
+      return 2 * (this.length * this.width + this.length * this.height + this.width * this.height);
+    }
+  
+    volume() {
+      return this.length * this.height * this.width;
+    }
+  }
+
+class CubeMaker extends CuboidMakerTwo {
+    constructor(cubeObj) {
+        super(cubeObj);
+    }
+
+    volume() {
+        return this.length * this.length * this.length;
+    }
+
+    surfaceArea() {
+        return (this.length * this.width) * 6;
+    }
+}
+const cube = new CubeMaker({length: 8, width: 8, height: 8});
+console.log(cube.surfaceArea());
